@@ -44,7 +44,25 @@ public class Character : MonoBehaviour
     }
     public void AddItem(Item item)
     {
-        Inventory.Add(item);
+        Item existingItem = Inventory.Find(i => i.Data == item.Data);
+        if (existingItem != null)
+        {
+            Debug.Log("똑같은거 있음");
+            if (existingItem.Data.canStack && existingItem.CurrentCount < existingItem.Data.maxStackAmount)
+            {
+                existingItem.CurrentCount += item.CurrentCount;
+            }
+            else
+            {
+                Inventory.Add(item);
+            }
+        }
+        else
+        {
+            Inventory.Add(item);
+
+        }
+        UIManager.Instance.UIInventory.GetComponent<UIInventory>().InitInventoryUI(this);
     }
     public void EquipItem(Item item)
     {
@@ -64,6 +82,7 @@ public class Character : MonoBehaviour
                 }
             }
         }
+        UIManager.Instance.UIInventory.GetComponent<UIInventory>().InitInventoryUI(this);
     }
     public void UnEquipItem(Item item)
     {
@@ -83,6 +102,7 @@ public class Character : MonoBehaviour
                 }
             }
         }
+        UIManager.Instance.UIInventory.GetComponent<UIInventory>().InitInventoryUI(this);
     }
     public void EatItem(Item item)
     {
@@ -100,11 +120,12 @@ public class Character : MonoBehaviour
                         break;
                 }
             }
-            item.Data.count--;
+            item.CurrentCount--;
             if(item.Data.count <= 0)
             {
                 Inventory.Remove(item);
             }
         }
+        UIManager.Instance.UIInventory.GetComponent<UIInventory>().InitInventoryUI(this);
     }
 }

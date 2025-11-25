@@ -30,16 +30,17 @@ public class UIInventory : MonoBehaviour
         UIManager.Instance.CloseInventory();
         ResetScrollRect();
     }
-    private void InitInventoryUI(Character character)
+    public void InitInventoryUI(Character character)
     {
         foreach(var slot in slots)
         {
             Destroy(slot.gameObject);
         }
+        slots.Clear();
         foreach(var item in character.Inventory)
         {
             UISlot newSlot = Instantiate(slotPrefab, slotParent);
-            newSlot.SetItem(item.Data);
+            newSlot.SetItem(item);
             slots.Add(newSlot);
         }
     }
