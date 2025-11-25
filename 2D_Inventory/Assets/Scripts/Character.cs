@@ -13,6 +13,8 @@ public class Character : MonoBehaviour
     [SerializeField] public int _defense {  get; private set; }
     [SerializeField] public int _health {  get; private set; }
     [SerializeField] public int _critical {  get; private set; }
+
+    public List<Item> Inventory {  get; private set; }
     public string Name => _name;
     public int Level => _level;
     public int Gold => _gold;
@@ -37,6 +39,72 @@ public class Character : MonoBehaviour
     }
     void Awake()
     {
+        Inventory = new List<Item>();
         GameManager.Instance.player = this;    
+    }
+    public void AddItem(Item item)
+    {
+        Inventory.Add(item);
+    }
+    public void EquipItem(Item item)
+    {
+        if(item!=null&&item.Data != null && item.Data.type == ItemType.Equipable&&!item.IsEquipped)
+        {
+            item.IsEquipped = true;
+            foreach(var equip in item.Data.equipables)
+            {
+                switch (equip.type)
+                {
+                    case EquipableType.Attack:
+                        _attack += (int)equip.value;
+                        break;
+                    case EquipableType.Defense:
+                        _defense += (int)equip.value;
+                        break;
+                }
+            }
+        }
+    }
+    public void UnEquipItem(Item item)
+    {
+        if (item.IsEquipped)
+        {
+            item.IsEquipped = false;
+            foreach(var equip in item.Data.equipables)
+            {
+                switch (equip.type)
+                {
+                    case EquipableType.Attack:
+                        _attack -= (int)equip.value;
+                        break;
+                    case EquipableType.Defense:
+                        _defense -= (int)equip.value;
+                        break;
+                }
+            }
+        }
+    }
+    public void EatItem(Item item)
+    {
+        if(item != null && item.Data !=null&& item.Data.type == ItemType.Consumable&&item.CurrentCount>0)
+        {
+            foreach (var _item in item.Data.consumables)
+            {
+                switch (_item.type)
+                {
+                    case ConsumableType.Health:
+                        _health += (int)_item.value;
+                        break;
+                    case ConsumableType.Level:
+                        _level += (int)_item.value;
+                        break;
+                }
+            }
+            item.Data.count--;
+            if(item.Data.count <= 0)
+            {
+                Inventory.Remove(item);
+            }
+        }
     }
 }

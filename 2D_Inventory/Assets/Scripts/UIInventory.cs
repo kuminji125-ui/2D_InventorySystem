@@ -11,7 +11,6 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
 
     private List<UISlot> slots = new List<UISlot>();
-    [SerializeField] private List<ItemData> items;
     void Awake()
     {
         openButton.onClick.AddListener(OpenClicked);
@@ -19,27 +18,28 @@ public class UIInventory : MonoBehaviour
     }
     void Start()
     {
-        InitInventoryUI();    
+        InitInventoryUI(GameManager.Instance.player);    
     }
     private void OpenClicked()
     {
         UIManager.Instance.OpenInventory();
+        InitInventoryUI(GameManager.Instance.player);
     }
     private void CloseClicked()
     {
         UIManager.Instance.CloseInventory();
         ResetScrollRect();
     }
-    private void InitInventoryUI()
+    private void InitInventoryUI(Character character)
     {
         foreach(var slot in slots)
         {
             Destroy(slot.gameObject);
         }
-        foreach(var item in items)
+        foreach(var item in character.Inventory)
         {
             UISlot newSlot = Instantiate(slotPrefab, slotParent);
-            newSlot.SetItem(item);
+            newSlot.SetItem(item.Data);
             slots.Add(newSlot);
         }
     }

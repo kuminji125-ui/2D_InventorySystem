@@ -26,5 +26,10 @@ public class GameManager : MonoBehaviour
         {
             player.SetData("민지", 12, 123456, "모험을 막 시작한 초보자입니다.\n아직 세상에 대해 아는 것이 많지 않지만, 호기심과 열정으로 가득 차 있습니다.", "코린이", 40, 50, 100, 35);
         }
+        ItemData swordData = Resources.Load<ItemData>("Items/Item_Sword");
+        ItemData shieldData = Resources.Load<ItemData>("Items/Item_Shield");
+        ItemData appleData = Resources.Load<ItemData>("Items/Item_Apple");
+        ItemData breadData = Resources.Load<ItemData>("Items/Item_Bread");
+        ItemData potionData = Resources.Load<ItemData>("Items/Item_Potion");
     }
 }
