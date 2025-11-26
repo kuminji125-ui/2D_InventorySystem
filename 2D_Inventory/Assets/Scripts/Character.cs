@@ -46,8 +46,7 @@ public class Character : MonoBehaviour
     {
         Item existingItem = Inventory.Find(i => i.Data == item.Data);
         if (existingItem != null)
-        {
-            Debug.Log("똑같은거 있음");
+        { 
             if (existingItem.Data.canStack && existingItem.CurrentCount < existingItem.Data.maxStackAmount)
             {
                 existingItem.CurrentCount += item.CurrentCount;
@@ -117,11 +116,12 @@ public class Character : MonoBehaviour
                         break;
                     case ConsumableType.Level:
                         _level += (int)_item.value;
+                        UIManager.Instance.UIMainMenu.GetComponent<UIMainMenu>().UpdateLevel();
                         break;
                 }
             }
             item.CurrentCount--;
-            if(item.Data.count <= 0)
+            if(item.CurrentCount <= 0)
             {
                 Inventory.Remove(item);
             }

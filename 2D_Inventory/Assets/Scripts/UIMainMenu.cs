@@ -37,4 +37,13 @@ public class UIMainMenu : MonoBehaviour
     {
         UIManager.Instance.CloseMainMenu();
     }
+    public void UpdateLevel()
+    {
+        levelTXT.text = $"Lv. {GameManager.Instance.player.Level.ToString()}";
+    }
+    public void UpdateGold()
+    {
+        goldTXT.text = $"{GameManager.Instance.player.Gold.ToString()} G";
+    }
+
 }

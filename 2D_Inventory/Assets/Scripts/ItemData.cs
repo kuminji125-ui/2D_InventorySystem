@@ -36,6 +36,7 @@ public class ItemData : ScriptableObject
     public string _name;
     public Sprite icon;
     public int count;
+    public string description;
 
     public bool canStack;
     public int maxStackAmount;

@@ -9,7 +9,15 @@ public class UISlot : MonoBehaviour
     [SerializeField] private Image iconImg;
     [SerializeField] private TextMeshProUGUI itemCountTXT;
 
+    [SerializeField] private Button openButton;
+ 
     public Item currentItem;
+
+    void Awake()
+    {
+        openButton.onClick.AddListener(() =>UIManager.Instance.OpenInventoryDetail(currentItem));    
+    }
+
     public void SetItem(Item item)
     {
         if(item == null)

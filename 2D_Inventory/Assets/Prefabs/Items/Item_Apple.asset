@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: "\uC0AC\uACFC"
   icon: {fileID: 21300000, guid: 560dde8cd49454b49b96e1a32deda6e6, type: 3}
   count: 1
+  description: "\uACFC\uC721\uC774 \uB9CE\uC740 \uC0AC\uACFC (\uCCB4\uB825 +15)"
   canStack: 1
   maxStackAmount: 15
   type: 1
