@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject uiMainMenu;
@@ -26,7 +27,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _description;
 
-
+    [Header("SceneLoad")]
+    [SerializeField] private Button gameStartButton;
     private void Awake()
     {
         if(Instance == null)
@@ -38,7 +40,14 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        closeButton.onClick.AddListener(CloseInventoryDetail);
+        if(closeButton != null)
+        {
+            closeButton.onClick.AddListener(CloseInventoryDetail);
+        }
+        if(gameStartButton!= null)
+        {
+            gameStartButton.onClick.AddListener(GameStart);
+        }   
     }
     void Start()
     {
@@ -153,5 +162,9 @@ public class UIManager : MonoBehaviour
     {
         _panel.SetActive(false);
         uiInventory.GetComponent<UIInventory>().InitInventoryUI(GameManager.Instance.player);
+    }
+    public void GameStart()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }

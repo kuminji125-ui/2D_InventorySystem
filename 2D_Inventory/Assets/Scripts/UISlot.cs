@@ -41,6 +41,10 @@ public class UISlot : MonoBehaviour
             iconImg.sprite = currentItem.Icon;
             iconImg.enabled = true;
             itemCountTXT.text = currentItem.CurrentCount > 1 ? currentItem.CurrentCount.ToString() : "";
+            if (currentItem.Data.type == ItemType.Equipable && currentItem.IsEquipped)
+            {
+                itemCountTXT.text = "E";
+            }
         }
         else
         {
