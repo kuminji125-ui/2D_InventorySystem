@@ -9,17 +9,20 @@ UI는 직관적이고 확장 가능하도록 설계되었습니다.
 ---
 
 ## 🗂 프로젝트 구조
+
+```
 Assets/
-├── Scripts/
-│    ├── Character.cs        // 플레이어 캐릭터 데이터 및 스탯 관리
-│    ├── GameManager.cs      // 게임 전체 흐름 관리 (Singleton)
-│    ├── Item.cs             // 아이템 기본 클래스
-│    ├── ItemData.cs         // 아이템 데이터 (ScriptableObject)
-│    ├── UIInventory.cs      // 인벤토리 UI 컨트롤
-│    ├── UIMainMenu.cs       // 메인 메뉴 UI 컨트롤
-│    ├── UIManager.cs        // UI 전반 관리 (Singleton)
-│    ├── UISlot.cs           // 인벤토리 슬롯 UI
-│    ├── UIStatus.cs         // 플레이어 스탯 UI
+ ├── Scripts/
+ │    ├── Character.cs        // 플레이어 캐릭터 데이터 및 스탯 관리
+ │    ├── GameManager.cs      // 게임 전체 흐름 관리 (Singleton)
+ │    ├── Item.cs             // 아이템 기본 클래스
+ │    ├── ItemData.cs         // 아이템 데이터 (ScriptableObject)
+ │    ├── UIInventory.cs      // 인벤토리 UI 컨트롤
+ │    ├── UIMainMenu.cs       // 메인 메뉴 UI 컨트롤
+ │    ├── UIManager.cs        // UI 전반 관리 (Singleton)
+ │    ├── UISlot.cs           // 인벤토리 슬롯 UI
+ │    ├── UIStatus.cs         // 플레이어 스탯 UI
+
 ---
 
 ## 🔑 주요 스크립트 설명
