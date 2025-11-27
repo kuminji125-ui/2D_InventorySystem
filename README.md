@@ -22,7 +22,7 @@ Assets/
  │    ├── UIManager.cs        // UI 전반 관리 (Singleton)
  │    ├── UISlot.cs           // 인벤토리 슬롯 UI
  │    ├── UIStatus.cs         // 플레이어 스탯 UI
-
+```
 ---
 
 ## 🔑 주요 스크립트 설명
